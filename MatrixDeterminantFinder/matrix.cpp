@@ -81,11 +81,17 @@ void matrix::calculate_size()
 				elements_count--;
 				continue;
 			}
+						
+			if (isalpha(rows[i][j]))
+			{
+				size = -2;
+				return;
+			}
 			elements_count++;
 		}
 	}
 
-	if (rows.size() != 0)
+	if (rows.size() != 0 && size != -2)
 	{
 		if ((double)rows.size() != (double)elements_count / (double)rows.size())
 		{
@@ -104,15 +110,21 @@ void matrix::calculate_size()
 
 void matrix::build_structure() 
 {
-	if(size == 0)
+	if (size == 0)
 	{
-		cout << "Матрица не введена. Файл пуст. \n";
+		cout << "Матрица не введена. Файл пуст.\n";
 		return;
 	}
 
 	if (size == -1)
 	{
-		cout << "Матрица не является квадратной. Возможно, файл имеет не числовые значения.\n";
+		cout << "Матрица не является квадратной.\n";
+		return;
+	}
+
+	if (size == -2)
+	{
+		cout << "Матрица введена неверно. Файл имеет не числовые символы.\n";
 		return;
 	}
 
