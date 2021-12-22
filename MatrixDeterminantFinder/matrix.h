@@ -10,13 +10,13 @@ using namespace std;
 class matrix
 {
 private:
-	vector< vector<double> > values;
-	int rank;
+	int size;
 	double det;
 	string path_to_file;
+	vector< vector<double> > values;
 
 	void build_structure();
-	void calculate_rank();
+	void calculate_size();
 	double calculate_det(vector< vector<double> > matrix, int rank);
 public:
 	matrix();
