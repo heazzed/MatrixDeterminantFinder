@@ -76,9 +76,15 @@ void matrix::calculate_size()
 			{
 				continue;
 			}
+			if (rows[i][j] == char(44) || rows[i][j] == char(46))
+			{
+				elements_count--;
+				continue;
+			}
 			elements_count++;
 		}
 	}
+
 	if (rows.size() != 0)
 	{
 		if ((double)rows.size() != (double)elements_count / (double)rows.size())
@@ -100,7 +106,7 @@ void matrix::build_structure()
 {
 	if(size == 0)
 	{
-		cout << "Матрица не введена. Файл пуст. \n";
+		cout << "Матрица не введена. Файл пуст либо имеет не числовые значения. \n";
 		return;
 	}
 
@@ -127,7 +133,7 @@ void matrix::set_from_file(string path_to_file)
 	
 	calculate_size();
 	build_structure();
-
+	
 	if (size > 0)
 	{
 		for (int i = 0; i < size; i++)
